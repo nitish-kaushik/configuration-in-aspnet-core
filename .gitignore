@@ -1,0 +1,52 @@
+# Build outputs
+bin/
+obj/
+
+# .NET Core
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio
+.vs/
+*.rsuser
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Secrets & Environment
+appsettings.Development.json
+appsettings.Local.json
+*.pfx
+*.p12
+secrets.json
+.env
+.env.*
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
