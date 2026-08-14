@@ -4,12 +4,13 @@ namespace LearningConfiguration.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BooksController : ControllerBase
+public class BooksController(IConfiguration configuration) : ControllerBase
 {
     // GET
     [HttpGet("GetAppName")]
     public IActionResult GetAppName()
     {
-        return Ok("LearningConfiguration");
+        var appName = configuration["AppName"];
+        return Ok(appName);
     }
 }
