@@ -1,3 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Microsoft.Extensions.Configuration;
 
-Console.WriteLine("Hello, World!");
+var configurationBuilder = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+IConfiguration configuration = configurationBuilder.Build();
+
+var appname = configuration["AppName"];
+
+Console.WriteLine($"App Name: {appname}");
