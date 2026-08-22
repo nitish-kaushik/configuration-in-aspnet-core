@@ -10,7 +10,7 @@ public class BooksController(IConfiguration configuration) : ControllerBase
     [HttpGet("GetAppName")]
     public IActionResult GetAppName()
     {
-        /*var appName = configuration["Title"];
+        /*
         var name = configuration["App:Name"];
         var version = configuration["App:Version"];
         var defaultConnectionString = configuration.GetConnectionString("Default");
@@ -32,9 +32,16 @@ public class BooksController(IConfiguration configuration) : ControllerBase
         //     var result =appSection.GetChildren().Where(x=>x.Value != null).Select(x=> x.Value).ToList();
         // }
 
+        var appName = configuration["Title"];
         var appObj = new App();
 
         configuration.GetSection("App").Bind(appObj);
+
+       var result =  configuration.GetSection("Servers").Get<List<AppServer>>(options =>
+        {
+            options.BindNonPublicProperties = true;
+            options.ErrorOnUnknownConfiguration = true;
+        });
 
         return Ok();
     }
@@ -42,6 +49,13 @@ public class BooksController(IConfiguration configuration) : ControllerBase
 
 class App
 {
-    public string? Name { get; set; }
+    [ConfigurationKeyName("Name")]
+    public string? AppName { get; set; }
     public string? Version { get; set; }
+}
+
+class AppServer
+{
+    public string? Name { get; set; }
+    private int? Port { get; set; }
 }
