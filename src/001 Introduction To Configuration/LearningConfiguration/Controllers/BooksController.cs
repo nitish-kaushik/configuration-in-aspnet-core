@@ -43,7 +43,7 @@ public class BooksController(IConfiguration configuration) : ControllerBase
             options.ErrorOnUnknownConfiguration = true;
         });
 
-        return Ok();
+        return Ok(appName + " " + appObj.AppName);
     }
 }
 
