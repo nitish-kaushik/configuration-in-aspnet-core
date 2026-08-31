@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LearningConfiguration/LearningConfiguration.csproj" />
+  <Project Path="Shared.Configurations/Shared.Configurations.csproj" />
+</Solution>
