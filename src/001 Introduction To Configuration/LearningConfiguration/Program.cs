@@ -6,7 +6,10 @@ builder.AddEnterpriseConfiguration(args);
 
 builder.Configuration.Sources.Clear();
 
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration
+    .AddJsonFile("../CustomAppSettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("dbdetails.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 var data = builder.Configuration.AsEnumerable();
 foreach (var item in data)

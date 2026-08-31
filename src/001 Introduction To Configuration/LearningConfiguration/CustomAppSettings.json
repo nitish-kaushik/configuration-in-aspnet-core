@@ -1,0 +1,7 @@
+{
+  "Title": "My Application Title CustomAppSettings.json file",
+  "App": {
+    "Name": "ConfigDemo from CustomAppSettings Json file",
+    "Version": "1.0.0"
+  }
+}

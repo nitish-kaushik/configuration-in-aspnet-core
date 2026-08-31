@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "Default": "Server=data from db details json file",
+    "Redis": "localhost:db details json file"
+  }
+}
