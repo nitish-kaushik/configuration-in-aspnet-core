@@ -1,22 +1,12 @@
+using LearningConfiguration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-var switchMappings = new Dictionary<string, string>()
-{
-    { "-db", "ConnectionStrings:Default" },
-    { "-rd", "ConnectionStrings:Redis" },
-    { "--t", "Title" },
-};
-builder.Configuration.AddCommandLine(args, switchMappings);
+builder.AddEnterpriseConfiguration(args);
 
-var inMemoryCollection = new Dictionary<string, string>()
-{
-    { "Title", "My In memory Application" },
-    { "App:Name", "App name In memory" },
-    { "ConnectionStrings:Default", "InMem,Server=localhost;Database=mydb;User Id=myuser;Password=mypassword;" },
-    { "ConnectionStrings:Redis", "localhost:inmem" }
-};
+builder.Configuration.Sources.Clear();
 
-builder.Configuration.AddInMemoryCollection(inMemoryCollection);
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 var data = builder.Configuration.AsEnumerable();
 foreach (var item in data)
