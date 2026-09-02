@@ -1,11 +1,14 @@
 using LearningConfiguration;
+using LearningConfiguration.Options;
 using Shared.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //builder.AddEnterpriseConfiguration(args);
 
-builder.Configuration.AddAppConfiguration();
+//builder.Configuration.AddAppConfiguration();
+
+builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("App"));
 
 var data = builder.Configuration.AsEnumerable();
 foreach (var item in data)

@@ -1,10 +1,14 @@
+using LearningConfiguration.Options;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace LearningConfiguration.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BooksController(IConfiguration configuration) : ControllerBase
+public class BooksController(IConfiguration configuration,
+    IOptions<AppOptions> appOptions,
+    IOptionsSnapshot<AppOptions> appOptionsSnapshot) : ControllerBase
 {
     // GET
     [HttpGet("GetAppName")]
@@ -12,7 +16,7 @@ public class BooksController(IConfiguration configuration) : ControllerBase
     {
         /*
         var name = configuration["App:Name"];
-        var version = configuration["App:Version"];
+        var version = configuration["App:Verion"];
         var defaultConnectionString = configuration.GetConnectionString("Default");
         var redisConString = configuration.GetConnectionString("Redis");
 
@@ -44,6 +48,19 @@ public class BooksController(IConfiguration configuration) : ControllerBase
         });
 
         return Ok(appName + " " + appObj.AppName);
+    }
+
+    [HttpGet("GetSettings")]
+    public IActionResult GetSettings()
+    {
+        var ioptions = appOptions.Value;
+        var ioptionsSnapshot = appOptionsSnapshot.Value;
+
+        return Ok(new
+        {
+            IOptions = ioptions,
+            IOptionsSnapshot = ioptionsSnapshot
+        });
     }
 }
 

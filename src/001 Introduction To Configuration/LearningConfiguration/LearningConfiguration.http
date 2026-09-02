@@ -5,5 +5,9 @@
 
 GET {{LearningConfiguration_HostAddress}}/books/getappname
 Accept: application/json
+###
+
+GET {{LearningConfiguration_HostAddress}}/books/getsettings
+Accept: application/json
 
 ###
