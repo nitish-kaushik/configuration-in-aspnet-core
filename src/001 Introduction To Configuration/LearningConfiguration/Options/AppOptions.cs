@@ -2,6 +2,7 @@ namespace LearningConfiguration.Options;
 
 public class AppOptions
 {
+    public static string SectionName = "App";
     public string? Name { get; set; }
     public string? Version { get; set; }
     public string? Description { get; set; }

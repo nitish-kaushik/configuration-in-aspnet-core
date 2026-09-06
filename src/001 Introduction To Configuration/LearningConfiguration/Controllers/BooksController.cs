@@ -8,7 +8,8 @@ namespace LearningConfiguration.Controllers;
 [Route("[controller]")]
 public class BooksController(IConfiguration configuration,
     IOptions<AppOptions> appOptions,
-    IOptionsSnapshot<AppOptions> appOptionsSnapshot) : ControllerBase
+    IOptionsSnapshot<AppOptions> appOptionsSnapshot,
+    IOptionsMonitor<AppOptions> appOptionsMonitor) : ControllerBase
 {
     // GET
     [HttpGet("GetAppName")]
@@ -55,6 +56,7 @@ public class BooksController(IConfiguration configuration,
     {
         var ioptions = appOptions.Value;
         var ioptionsSnapshot = appOptionsSnapshot.Value;
+        var ioptionsMonitor = appOptionsMonitor.CurrentValue;
 
         return Ok(new
         {
