@@ -9,7 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Configuration.AddAppConfiguration();
 builder.Services.AddHostedService<SmtpService>();
-builder.Services.Configure<AppOptions>(builder.Configuration.GetSection(AppOptions.SectionName));
+//builder.Services.Configure<AppOptions>(builder.Configuration.GetSection(AppOptions.SectionName));
+
+builder.Services.AddOptions<AppOptions>()
+    .Bind(builder.Configuration.GetSection(AppOptions.SectionName))
+    //.ValidateDataAnnotations()
+    .Validate(x=> !string.IsNullOrWhiteSpace(x.Name), "App Name is required")
+    .Validate(x=> !string.IsNullOrWhiteSpace(x.Version), "App Version is required")
+    .ValidateOnStart();
 
 builder.Services.Configure<SmtpOptions>("provider1", builder.Configuration.GetSection("SmtpOptions:provider1"));
 builder.Services.Configure<SmtpOptions>("provider2", builder.Configuration.GetSection("SmtpOptions:provider2"));
